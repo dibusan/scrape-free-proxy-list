@@ -1,0 +1,11 @@
+[Unit]
+Description=scrape-free-proxy-list-app
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=~/scrape-free-proxy-list
+
+[Install]
+WantedBy=multi-user.target
