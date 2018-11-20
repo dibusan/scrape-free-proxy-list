@@ -2,7 +2,7 @@
 set -x
 
 # Copy demon to systemd folder
-cp $(pwd)/scrapefreeproxylist.service /lib/systemd/system/.
+cp $(pwd)/daemon/scrapefreeproxylist.service /lib/systemd/system/.
 
 # Start service
 service scrapefreeproxylist start
