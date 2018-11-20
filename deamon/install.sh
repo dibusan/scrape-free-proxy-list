@@ -5,10 +5,10 @@ set -x
 cp $(pwd)/scrapefreeproxylist.service /lib/systemd/system/.
 
 # Start service
-service wombatapp start
+service scrapefreeproxylist start
 
 # Enable service on bootup
-service wombatapp enable
+service scrapefreeproxylist enable
 
 # Check status of service
-service wombatapp status
+service scrapefreeproxylist status
