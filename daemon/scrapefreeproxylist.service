@@ -5,7 +5,7 @@ Description=scrape-free-proxy-list-app
 Type=simple
 Restart=always
 RestartSec=5s
-ExecStart=~/scrape-free-proxy-list
+ExecStart=/home/erieljr1/scrape-free-proxy-list
 
 [Install]
 WantedBy=multi-user.target
