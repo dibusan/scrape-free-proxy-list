@@ -2,8 +2,18 @@
 
 * Using `dep` for satisfying vendor code: `$ dep init`
 
-### To Deploy in Production (Ubuntu)
+### Setup in Production (Ubuntu)
 - https://jonathanmh.com/deploying-go-apps-systemd-10-minutes-without-docker/
-1. Clone repo to Ubuntu server `$ git clone https://github.com/dibusan/scrape-free-proxy-list.git`
-2. Update `/lib/systemd/system/scrapefreeproxylist.service` line `ExecStart=/home/erieljr1/scrape-free-proxy-list` to reflect the correct path for the downloaded application
-3. Run installer `$ bash scrape-free-proxy-list/daemon/install.sh`
+1. Install go `$ sudo apt-get install golang-go`
+2. Setup $GOPATH 
+  * `$ mkdir ~/go`
+  * Add to `~/.bashrc`
+
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+
+  * Reload bashrc `$ source ~/.bashrc`
+
+3. Download code using `$ go get github.com/dibusan/scrape-free-proxy-list`
+4. Update `/lib/systemd/system/scrapefreeproxylist.service` line `ExecStart=/home/{username}/go/src/github.com/dibusan/scrape-free-proxy-list` to reflect the correct {username} 
+5. Run installer `$ sudo bash scrape-free-proxy-list/daemon/install.sh`
