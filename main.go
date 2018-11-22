@@ -217,6 +217,7 @@ func parseTableBody(tBody *html.Node) []Proxy{
 			proxies = append(proxies, parseTableRow(c))
 		}
 	}
+	logInfo("Found " + strconv.Itoa(len(proxies)) + " proxies")
 	return proxies
 }
 
@@ -402,18 +403,12 @@ func main() {
 
 		logInfo("Sleeping 5 minutes...")
 		ticker := time.NewTicker(10 * time.Second)
-		//totalSleepSeconds := 5 * 60;
-		//elapsedSeconds := 0
+		totalSleepSeconds := 5 * 60
+		elapsedSeconds := 0
 		go func() {
-			for t := range ticker.C {
-				//elapsedSeconds += 10
-
-				
-
-
-				logVerbose("Countdown: " + t.String() + " seconds...")
-
-				//logVerbose("Countdown: " + strconv.Itoa(totalSleepSeconds - t.Second()) + " seconds...")
+			for range ticker.C {
+				elapsedSeconds += 10
+				logVerbose("Countdown: " + strconv.Itoa(totalSleepSeconds - elapsedSeconds) + " seconds...")
 			}
 		}()
 		time.Sleep(5 * time.Minute)
