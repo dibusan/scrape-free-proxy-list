@@ -14,6 +14,8 @@ import (
 	"encoding/json"
 	"time"
 	"log"
+	"encoding/hex"
+	"crypto/rand"
 )
 
 const (
@@ -62,6 +64,14 @@ var (
 	logLevel = ERROR
 )
 
+func randomHex(n int) (string, error) {
+	bytes := make([]byte, n)
+	if _, err := rand.Read(bytes); err != nil {
+		return "", err
+	}
+	return hex.EncodeToString(bytes), nil
+}
+
 func initLogger(ll int){
 	logLevel = ll
 	runtimeLog, err := os.OpenFile("/var/log/scrapefreeproxylist.log",
@@ -70,8 +80,12 @@ func initLogger(ll int){
 		fmt.Printf("error opening file: %v", err)
 		os.Exit(1)
 	}
-	logger = log.New(runtimeLog, "applog: ", log.Lshortfile|log.LstdFlags)
 
+	hex, _ := randomHex(10)
+	prefix := hex + "-applog:"
+
+	logger = log.New(runtimeLog, prefix, log.Lshortfile|log.LstdFlags)
+	logger.Println("---------- START " + prefix + "----------")
 }
 
 func logError(msg string){
@@ -372,8 +386,9 @@ func saveProxies(proxies []Proxy) bool {
 }
 
 func main() {
-	initLogger(VERBOSE)
+
 	for {
+		initLogger(VERBOSE)
 		pageBytes, err := getPage()
 		if err != nil {
 			logWarning("Failed to getPage. Sleep for 2 minutes and retry.")
@@ -413,5 +428,6 @@ func main() {
 		}()
 		time.Sleep(5 * time.Minute)
 		ticker.Stop()
+		logVerbose("=== END ===\n\n")
 	}
 }
