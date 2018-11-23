@@ -8,6 +8,16 @@ To retrieve the list of 300 proxies: GET https://rest-free-proxy-list.herokuapp.
 ## Note
 Using `dep` for satisfying vendor code: `$ dep init`
 
+## Run in DEV
+### Requirements:
+- Go is installed
+- GOPATH is set up
+### Execution:
+- Get the project: `$ go get github.com/dibusan/scrape-free-proxy-list`
+- Navigate to project `$ cd $GOPATH/src/github.com/dibusan/scrape-free-proxy-list`
+- Run main `$ go run main.go`
+- To check progress check the log file `tail -f /var/log/scrapefreeproxylist.log`
+
 ## Setup in Production (Ubuntu)
 (https://jonathanmh.com/deploying-go-apps-systemd-10-minutes-without-docker/)
 1. Install go `$ sudo apt-get install golang-go`
