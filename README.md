@@ -8,7 +8,7 @@ To retrieve the list of 300 proxies: GET https://rest-free-proxy-list.herokuapp.
 ## Note
 Using `dep` for satisfying vendor code: `$ dep init`
 
-### Setup in Production (Ubuntu)
+## Setup in Production (Ubuntu)
 (https://jonathanmh.com/deploying-go-apps-systemd-10-minutes-without-docker/)
 1. Install go `$ sudo apt-get install golang-go`
 2. Setup $GOPATH `$ mkdir ~/go`
