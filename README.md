@@ -1,6 +1,12 @@
 # scrape-free-proxy-list
 
-* Using `dep` for satisfying vendor code: `$ dep init`
+## Overview
+This is the scraper part of a service to make the information in https://free-proxy-list.net available through a REST api. The scraper requests the page every 5 minutes, parses the list of 300 available proxies and updates a REST api at https://rest-free-proxy-list.herokuapp.com/api-docs/index.html . 
+
+To retrieve the list of 300 proxies: GET https://rest-free-proxy-list.herokuapp.com/proxies
+
+## Note
+Using `dep` for satisfying vendor code: `$ dep init`
 
 ### Setup in Production (Ubuntu)
 (https://jonathanmh.com/deploying-go-apps-systemd-10-minutes-without-docker/)
